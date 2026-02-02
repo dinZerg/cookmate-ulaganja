@@ -11,10 +11,11 @@
         .section { padding: 60px 0; }
         .cta-btn { background: #28a745; border: none; padding: 15px 30px; font-size: 1.2em; }
         #contact-form { max-width: 500px; margin: 0 auto; }
-        #contact-form input, #contact-form textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
-        #contact-form button { background: #28a745; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; }
+        #contact-form input, #contact-form textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        #contact-form button { background: #28a745; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1.1em; }
         #contact-form button:hover { background: #218838; }
         .alert { margin-top: 20px; }
+        .form-submitted { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb; }
     </style>
 </head>
 <body>
@@ -73,24 +74,61 @@
                     </table>
                 </div>
             </div>
-            <!-- Kontakt Form -->
+            <!-- Kontakt Form (fake submit) -->
             <div id="contact-form-section" class="row justify-content-center mt-5">
                 <div class="col-md-8">
                     <h4 class="text-center">Zainteresirani za ulaganje?</h4>
                     <p class="text-center">Pošalji poruku – kontaktirat ću te uskoro!</p>
-                    <form id="contact-form" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST">
-                        <input type="text" name="ime" placeholder="Ime" required>
-                        <input type="text" name="prezime" placeholder="Prezime" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <textarea name="poruka" rows="5" placeholder="Poruka (npr. interes za ulaganje, pitanja...)" required></textarea>
+                    <form id="contact-form">
+                        <input type="text" id="ime" placeholder="Ime" required>
+                        <input type="text" id="prezime" placeholder="Prezime" required>
+                        <input type="email" id="email" placeholder="Email" required>
+                        <textarea id="poruka" rows="5" placeholder="Poruka (npr. interes za ulaganje, pitanja...)" required></textarea>
                         <button type="submit">Pošalji</button>
                     </form>
-                    <div id="form-message" class="alert" style="display:none;"></div>
+                    <div id="success-message" class="form-submitted">
+                        <strong>Poruka poslana uspješno!</strong><br>
+                        Hvala na interesu za CookMate. Kontaktirat ću te u najkraćem roku na <span id="user-email"></span>.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tim -->
-    <section class="section bg-l
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Tim</h2>
+            <p class="text-center">Din Wagenhoffer, student 4.G, Tehnika i poslovno komuniciranje. Mentor: Goran Gomaz.</p>
+        </div>
+    </section>
 
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2026 CookMate. Sva prava zadržana.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Sprječava stvarni submit
+            
+            // Prikaži success poruku
+            const form = this;
+            const successMsg = document.getElementById('success-message');
+            const userEmail = document.getElementById('email').value;
+            
+            successMsg.querySelector('#user-email').textContent = userEmail;
+            successMsg.style.display = 'block';
+            form.style.display = 'none'; // Sakrij form nakon submita
+            
+            // Scroll na poruku
+            successMsg.scrollIntoView({ behavior: 'smooth' });
+            
+            // Opcionalno: alert za potvrdu
+            setTimeout(() => {
+                alert('Poruka poslana uspješno! Hvala na interesu.');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
