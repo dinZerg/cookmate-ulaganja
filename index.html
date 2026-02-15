@@ -11,19 +11,23 @@
 <style>
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color: white;
     scroll-behavior: smooth;
 }
 
 .navbar {
+    background: rgba(0,0,0,0.6);
     backdrop-filter: blur(10px);
-    background: rgba(255,255,255,0.8);
+}
+
+.section {
+    padding:100px 0;
 }
 
 .hero {
-    background: linear-gradient(135deg,#ff6b6b,#feca57);
-    color:white;
-    padding:120px 0;
+    padding:150px 0 120px 0;
+    text-align:center;
 }
 
 .hero h1 {
@@ -31,16 +35,12 @@ body {
     font-weight:700;
 }
 
-.section {
-    padding:100px 0;
-}
-
 .glass {
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
     border-radius:20px;
     padding:30px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.1);
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
     transition:0.4s;
 }
 
@@ -51,23 +51,16 @@ body {
 .feature-icon {
     font-size:2rem;
     margin-bottom:15px;
-    color:#ff6b6b;
+    color:#feca57;
 }
 
 .stats {
-    background:#111;
-    color:white;
+    background: rgba(0,0,0,0.5);
 }
 
 .stat-number {
     font-size:3rem;
     font-weight:700;
-}
-
-.cta-section {
-    background: linear-gradient(135deg,#28a745,#20c997);
-    color:white;
-    padding:100px 0;
 }
 
 .btn-custom {
@@ -76,16 +69,24 @@ body {
     border-radius:50px;
 }
 
-.footer {
-    background:#111;
-    color:white;
-    padding:40px 0;
+.video-wrapper iframe {
+    border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
 }
 
-.phone-mockup {
-    max-width:300px;
-    border-radius:30px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+input, textarea {
+    background: rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.3);
+    color:white;
+}
+
+input::placeholder, textarea::placeholder {
+    color:#ddd;
+}
+
+.footer {
+    background: rgba(0,0,0,0.7);
+    padding:40px 0;
 }
 </style>
 </head>
@@ -93,28 +94,29 @@ body {
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+<nav class="navbar navbar-expand-lg fixed-top">
 <div class="container">
-<a class="navbar-brand fw-bold text-danger" href="#">CookMate</a>
+<a class="navbar-brand fw-bold text-warning" href="#">CookMate</a>
 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="nav">
 <ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#features">Funkcije</a></li>
-<li class="nav-item"><a class="nav-link" href="#business">Poslovni plan</a></li>
-<li class="nav-item"><a class="nav-link" href="#invest">Ulaganje</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="#features">Funkcije</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="#video">Demo</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="#business">Model</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="#contact">Investicija</a></li>
 </ul>
 </div>
 </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero text-center">
+<section class="hero">
 <div class="container">
 <h1>CookMate</h1>
-<p class="lead mb-4">Pametna aplikacija za kuhanje i planiranje obroka.</p>
-<a href="#invest" class="btn btn-light btn-custom shadow">Investiraj sada</a>
+<p class="lead mb-4">Pametna aplikacija za planiranje obroka i zdraviju prehranu.</p>
+<a href="#contact" class="btn btn-warning btn-custom shadow">Postani investitor</a>
 </div>
 </section>
 
@@ -128,7 +130,7 @@ body {
 <div class="glass">
 <i class="fas fa-search feature-icon"></i>
 <h4>Pretraživanje recepata</h4>
-<p>Pametni filteri prema navikama, vremenu i dostupnim namirnicama.</p>
+<p>Pametni filteri prema navikama i dostupnim namirnicama.</p>
 </div>
 </div>
 
@@ -143,7 +145,7 @@ body {
 <div class="col-md-4">
 <div class="glass">
 <i class="fas fa-shopping-cart feature-icon"></i>
-<h4>Popis namirnica</h4>
+<h4>Digitalna kupovna lista</h4>
 <p>Automatska lista za kupovinu – bez bacanja hrane.</p>
 </div>
 </div>
@@ -152,36 +154,28 @@ body {
 </div>
 </section>
 
-<!-- MOCKUP + OPIS -->
-<section class="section bg-light">
+<!-- VIDEO SECTION -->
+<section id="video" class="section text-center">
 <div class="container">
-<div class="row align-items-center">
-
-<div class="col-md-6">
-<h2 class="fw-bold mb-4">Jednostavno. Brzo. Pametno.</h2>
-<p>CookMate korisniku daje personalizirane recepte, plan obroka i jasan prikaz kupovne liste – sve u jednom modernom sučelju.</p>
-<ul>
-<li>✔ Personalizacija prehrane</li>
-<li>✔ Premium recepti poznatih kuhara</li>
-<li>✔ Nutritivna analiza</li>
-</ul>
-</div>
-
-<div class="col-md-6 text-center">
-<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19" class="img-fluid phone-mockup">
-</div>
-
+<h2 class="fw-bold mb-5">Kako CookMate funkcionira</h2>
+<div class="video-wrapper">
+<iframe width="800" height="450"
+src="https://www.youtube.com/embed/1APwq1df6Mw"
+title="Cooking App Demo"
+frameborder="0"
+allowfullscreen>
+</iframe>
 </div>
 </div>
 </section>
 
 <!-- STATS -->
-<section class="stats text-center section">
+<section class="stats section text-center">
 <div class="container">
 <div class="row">
 
 <div class="col-md-4">
-<div class="stat-number">1000+</div>
+<div class="stat-number">1.000+</div>
 <p>Potencijalnih Premium korisnika</p>
 </div>
 
@@ -192,38 +186,38 @@ body {
 
 <div class="col-md-4">
 <div class="stat-number">15.000€</div>
-<p>Maksimalna početna investicija</p>
+<p>Tražena Seed investicija</p>
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- BUSINESS -->
+<!-- BUSINESS MODEL -->
 <section id="business" class="section">
-<div class="container">
-<h2 class="text-center fw-bold mb-5">Poslovni Model</h2>
+<div class="container text-center">
+<h2 class="fw-bold mb-5">Poslovni model</h2>
 
 <div class="row g-4">
 
 <div class="col-md-4">
-<div class="glass text-center">
+<div class="glass">
 <h4>Freemium</h4>
-<p>3-5€ mjesečno Premium plan</p>
+<p>3–5€ mjesečno Premium pretplata</p>
 </div>
 </div>
 
 <div class="col-md-4">
-<div class="glass text-center">
+<div class="glass">
 <h4>Oglasi</h4>
-<p>500–2.000€ mjesečno</p>
+<p>500–2.000€ mjesečno prihod</p>
 </div>
 </div>
 
 <div class="col-md-4">
-<div class="glass text-center">
+<div class="glass">
 <h4>Partnerstva</h4>
-<p>1.000–3.000€ mjesečno</p>
+<p>1.000–3.000€ mjesečno suradnje</p>
 </div>
 </div>
 
@@ -231,12 +225,29 @@ body {
 </div>
 </section>
 
-<!-- INVEST CTA -->
-<section id="invest" class="cta-section text-center">
+<!-- CONTACT / INVEST -->
+<section id="contact" class="section">
 <div class="container">
-<h2 class="fw-bold mb-4">Postani dio budućnosti kuhanja</h2>
-<p class="mb-4">CookMate ima potencijal postati vodeća aplikacija za planiranje obroka u regiji.</p>
-<a href="#" class="btn btn-light btn-custom shadow">Kontakt za ulaganje</a>
+<h2 class="text-center fw-bold mb-4">Zainteresirani za ulaganje?</h2>
+<p class="text-center mb-5">
+Tražimo <strong>15.000€ seed investicije</strong> za razvoj MVP verzije, marketing i lansiranje aplikacije.
+</p>
+
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="glass">
+<form id="contact-form">
+<input type="text" class="form-control mb-3" placeholder="Ime" required>
+<input type="email" class="form-control mb-3" placeholder="Email" required>
+<textarea class="form-control mb-3" rows="4" placeholder="Poruka"></textarea>
+<button type="submit" class="btn btn-warning w-100">Pošalji upit</button>
+</form>
+<div id="success-message" class="mt-3 text-success" style="display:none;">
+Poruka uspješno poslana. Kontaktirat ćemo vas uskoro.
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 
@@ -257,6 +268,14 @@ body {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e){
+e.preventDefault();
+document.getElementById('success-message').style.display = "block";
+this.reset();
+});
+</script>
 
 </body>
 </html>
